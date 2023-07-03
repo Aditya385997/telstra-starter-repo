@@ -21,13 +21,18 @@ public class SimCotroller {
     {
         AcutateResponse acutateResponse = simService.getStatus(simDetails);
         System.out.print(acutateResponse.isSuccess());
-    }
-
-    @PostMapping("/insert")
-    public void insertSimDetail(@RequestBody SimRecord simRecord)
-    {
+        SimRecord simRecord = new SimRecord();
+        simRecord.setIccid(simDetails.getIccid());
+        simRecord.setCustomerEmail(simDetails.getCustomerEmail());
+        simRecord.setActive(acutateResponse.isSuccess());
         simService.insertSim(simRecord);
     }
+
+//    @PostMapping("/insert")
+//    public void insertSimDetail(@RequestBody SimRecord simRecord)
+//    {
+//        simService.insertSim(simRecord);
+//    }
 
     @GetMapping("/getDetails/{simId}")
     public void getSimDetail(@PathVariable long simId)
