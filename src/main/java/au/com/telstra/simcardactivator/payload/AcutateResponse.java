@@ -2,7 +2,7 @@ package au.com.telstra.simcardactivator.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class AcutateResponse {
     private boolean Success;
 
