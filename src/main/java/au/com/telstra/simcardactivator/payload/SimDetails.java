@@ -11,21 +11,18 @@ import javax.persistence.Id;
 
 public class SimDetails {
 
-
-
-
     private String iccid;
 
     private String customerEmail;
 
-    private boolean active;
+
     public SimDetails() {
     }
 
-    public SimDetails(String iccid, String customerEmail,boolean active) {
+    public SimDetails(String iccid, String customerEmail) {
         this.iccid = iccid;
         this.customerEmail = customerEmail;
-        this.active = active;
+
     }
 
     public String getIccid() {
@@ -43,21 +40,12 @@ public class SimDetails {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
-    public void setActive(boolean active)
-    {
-        this.active = active;
-    }
-    public boolean getActive()
-    {
-        return active;
-    }
 
     @Override
     public String toString() {
         return "SimDetails{" +
                 "iccid='" + iccid + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", active= '"+active+'\''+
+                ", customerEmail='" + customerEmail + '\''+
                 '}';
     }
 }
