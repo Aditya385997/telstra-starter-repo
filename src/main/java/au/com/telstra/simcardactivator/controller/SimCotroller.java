@@ -2,6 +2,7 @@ package au.com.telstra.simcardactivator.controller;
 
 import au.com.telstra.simcardactivator.payload.AcutateResponse;
 import au.com.telstra.simcardactivator.payload.SimDetails;
+import au.com.telstra.simcardactivator.payload.SimRecord;
 import au.com.telstra.simcardactivator.service.SimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,17 @@ public class SimCotroller {
     @Autowired
     private SimService simService;
 
-    @PostMapping("/details")
+    @PostMapping("/activate")
     public void getStatusCall(@RequestBody SimDetails simDetails)
     {
         AcutateResponse acutateResponse = simService.getStatus(simDetails);
         System.out.print(acutateResponse.isSuccess());
-        simService.insertSim(simDetails);
+    }
+
+    @PostMapping("/insert")
+    public void insertSimDetail(@RequestBody SimRecord simRecord)
+    {
+        simService.insertSim(simRecord);
     }
 
     @GetMapping("/getDetails/{simId}")

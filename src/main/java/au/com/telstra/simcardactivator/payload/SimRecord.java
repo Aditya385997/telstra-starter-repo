@@ -1,31 +1,36 @@
 package au.com.telstra.simcardactivator.payload;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-
-
-public class SimDetails {
-
-
-
-
+@Entity
+public class SimRecord {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @Column(nullable = false)
     private String iccid;
 
+    @Column(nullable = false)
     private String customerEmail;
-
+    @Column(nullable = false)
     private boolean active;
-    public SimDetails() {
+
+    public SimRecord() {
     }
 
-    public SimDetails(String iccid, String customerEmail,boolean active) {
+    public SimRecord(long id, String iccid, String customerEmail, boolean active) {
+        this.id = id;
         this.iccid = iccid;
         this.customerEmail = customerEmail;
         this.active = active;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getIccid() {
@@ -43,21 +48,22 @@ public class SimDetails {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
-    public void setActive(boolean active)
-    {
-        this.active = active;
-    }
-    public boolean getActive()
-    {
+
+    public boolean isActive() {
         return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
     public String toString() {
-        return "SimDetails{" +
-                "iccid='" + iccid + '\'' +
+        return "SimRecord{" +
+                "id=" + id +
+                ", iccid='" + iccid + '\'' +
                 ", customerEmail='" + customerEmail + '\'' +
-                ", active= '"+active+'\''+
+                ", active=" + active +
                 '}';
     }
 }

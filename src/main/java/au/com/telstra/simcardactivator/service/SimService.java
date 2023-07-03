@@ -3,6 +3,7 @@ package au.com.telstra.simcardactivator.service;
 import au.com.telstra.simcardactivator.Repo.SimRepo;
 import au.com.telstra.simcardactivator.payload.AcutateResponse;
 import au.com.telstra.simcardactivator.payload.SimDetails;
+import au.com.telstra.simcardactivator.payload.SimRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,13 @@ public class SimService {
         return restTemplate.postForObject(url,simDetails, AcutateResponse.class);
     }
 
-    public void insertSim(SimDetails simDetails)
+    public void insertSim(SimRecord simDetails)
     {
         simRepo.save(simDetails);
     }
-    public SimDetails getSimDetailById(long simId)
+    public SimRecord getSimDetailById(long simId)
     {
-        Optional<SimDetails>simDetails = simRepo.findById(simId);
+        Optional<SimRecord>simDetails = simRepo.findById(simId);
         return simDetails.orElse(null);
     }
 
